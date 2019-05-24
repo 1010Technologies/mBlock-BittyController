@@ -1,0 +1,160 @@
+{	"extensionName": "BittyController",
+	"description": "mBlocks for the Bitty Controller",
+	"version": "1.0.2",
+	"author": "Roger Wagner(hyperduino@1010technologies.com)",
+	"homepage": "http://hyperduino.com/",
+	"sort":0,
+	"javascriptURL":"js/BittyController.js",
+  "firmware":"1.0",
+  "extensionPort":0,
+	"blockSpecs": [
+		["h","HyperDuino","runArduino"],
+
+    ["w",
+			"Bluetooth setup TX %d.BT_TX RX %d.BT_RX",
+			"btSetup",
+			"A1",
+			"A0",
+			{
+				"inc":"#include <SoftwareSerial.h>\n",
+				"def":"SoftwareSerial bluetooth({0}, {1});\n",
+				"setup":"bluetooth.begin(9600);\ndelay(200);\n",
+				"work":"",
+				"loop":"" 
+			}
+		],
+
+    [
+      "b",
+      "Bitty Controller has event",
+      "btBittyHasEvent",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerHasEvent(bluetooth)",
+        "loop": ""
+      }
+    ],
+
+    [
+      "b",
+      "Bitty Controller event %d.BITTY_EVENT",
+      "btBittyEvent",
+      "Dpad",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerEvent({0})",
+        "loop": ""
+      }
+    ],
+
+    [
+      "b",
+      "Bitty %d.DPAD_PAD dpad, %d.DPAD_BUTTON button, %d.DPAD_STATE",
+      "btBittyDpadEvent",
+      "left",
+      "top",
+      "pressed",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerDpad({0}, {1}, {2})",
+        "loop": ""
+      }
+    ],
+  
+    [
+      "r",
+      "Bitty touchpad motion speed",
+      "btBittyTouchpadForwardEvent",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerMotionSpeed()",
+        "loop": ""
+      }
+    ],
+
+    [
+      "r",
+      "Bitty touchpad motion direction",
+      "btBittyTouchpadRightEvent",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerMotionDirection()",
+        "loop": ""
+      }
+    ],
+
+    [
+      "b",
+      "Bitty touchpad %d.TOUCHPAD_STATE",
+      "btBittyTouchpadEvent",
+      "touched",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerTouchpad({0})",
+        "loop": ""
+      }
+    ],
+
+    [
+      "b",
+      "Bitty general control %d.DPAD_STATE",
+      "btBittyGeneralControlEvent",
+      "pressed",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerGeneral({0})",
+        "loop": ""
+      }
+    ],
+
+    [
+      "r",
+      "Bitty pressed button ID",
+      "btBittyButtonEvent",
+      {
+        "inc": "#include \"BittyController.h\"\n",
+        "def": "",
+        "setup": "",
+        "work": "hd_bittyControllerButton()",
+        "loop": ""
+      }
+    ]
+
+	],
+
+  "menus": {
+		"BT_TX": ["A0","A1","A2","A3","A4","A5",2,3,4,5,6,7,8,9,10,11,12],
+		"BT_RX": ["A0","A1","A2","A3","A4","A5",2,3,4,5,6,7,8,9,10,11,12],
+    "BITTY_EVENT": ["Dpad","Touchpad motion","Touchpad control","General control","Sampling Control","Button", "Pin"],
+    "DPAD_PAD": ["left", "right"],
+    "DPAD_BUTTON": ["top", "bottom", "left", "right"],
+    "DPAD_STATE": ["pressed", "released"],
+    "TOUCHPAD_STATE": ["touched", "released"]
+	},
+    
+  "values":{
+		"A0": 14,
+		"A1": 15,
+		"A2": 16,
+		"A3": 17,
+		"A4": 18,
+		"A5": 19,
+    "pressed": 1,
+    "touched": 1,
+    "released": 0
+  }
+}
