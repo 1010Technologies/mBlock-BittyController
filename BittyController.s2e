@@ -1,5 +1,5 @@
-{	"extensionName": "BittyController",
-	"description": "mBlocks for the Bitty Controller",
+{	"extensionName": "HyperDuino BittyController",
+	"description": "mBlocks for Bitty Controller for HyperDuino",
 	"version": "1.0.2",
 	"author": "Roger Wagner(hyperduino@1010technologies.com)",
 	"homepage": "http://hyperduino.com/",
@@ -8,7 +8,6 @@
   "firmware":"1.0",
   "extensionPort":0,
 	"blockSpecs": [
-		["h","HyperDuino","runArduino"],
 
     ["w",
 			"Bluetooth setup TX %d.BT_TX RX %d.BT_RX",
